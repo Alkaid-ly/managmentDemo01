@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="//cdn.bootcdn.net/ajax/libs/zui/1.10.0/css/zui.min.css">
+<body>
+<div id="app">
+    <label>姓 &nbsp; 名</label><input type="text" >{{student.username}}<br>
+    <label>性 &nbsp; 别</label><input type="text">{{student.gender}}<br>
+    <label>年 &nbsp; 级</label><input type="text">{{student.grade}}<br>
+    <label>年&nbsp;  龄</label><input type="text"><br>
+    <label>电 &nbsp; 话</label><input type="text"><br>
+    <label>任务数</label><input type="text"><br>
+
+</div>
+</body>
+
+    <script src="js/vue.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                student:{}
+            }
+        },
+        mounted(){
+            //页面加载完成后
+            var _this=this;
+            axios({
+                method:"get",
+                url:"http://localhost:8080/selectById?id=2020001"
+            }).then(function (resp){
+                _this.student=resp.data;
+            })
+        }
+    })
+
+</script>
+</html>
