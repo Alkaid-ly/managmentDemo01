@@ -22,6 +22,8 @@ public interface StudentMapper {
 
     int loginStudent(Student student);
 
+    void addStudent(Student student);
+
     @Select("select * from student where sid=#{sid} and password=#{password}")
     Student selectStudent(@Param("sid") String sid,@Param("password") String password);
 

@@ -8,6 +8,11 @@ class ManagmentDemo01ApplicationTests {
 
     @Test
     void contextLoads() {
+
+    }
+    @Test
+    void testAdd(){
+
     }
 
 }
