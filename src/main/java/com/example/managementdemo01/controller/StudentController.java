@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -90,14 +91,42 @@ public class StudentController {
         return result;
     }
     @GetMapping("/loginStudent")
-    public ModelAndView loginById(@RequestParam("sid") String sid, @RequestParam("password") String password){
+    public void loginById(HttpServletResponse response,@RequestParam("sid") String sid, @RequestParam("password") String password) throws IOException {
         Student student = studentMapper.selectStudent(sid, password);
-        boolean flag=false;
+        System.out.println(student);
         if(student!=null){
-            flag=true;
-            return new ModelAndView("redirect/localhost:8080/student.html");
+
+            response.sendRedirect("student.html");
+            return;
         }
-        return null;
+        response.sendRedirect("login.html");
     }
 //    List<Student> selectByCondition(String username,String gender)
+    @GetMapping("/addStudent")
+    public int addStudent(@Param("sid") String sid,@Param("username") String username,@Param("password") String password, @Param("gender") String gender, @Param("grade")String grade, @Param("age")String age, @Param("phone")String phone){
+        Student student=new Student();
+        if(sid!=null){
+            student.setSid(sid);
+        }
+        if(username!=null){
+            student.setUsername(username);
+        }
+        if(password!=null){
+            student.setPassword(password);
+        }
+        if(gender!=null){
+            student.setGender(gender);
+        }
+        if(grade!=null) {
+            student.setGrade(grade);
+        }
+        if(age!=null) {
+            student.setAge(age);
+        }
+        if(phone!=null){
+            student.setPhone(phone);
+        }
+        studentMapper.addStudent(student);
+        return 1;
+    }
 }

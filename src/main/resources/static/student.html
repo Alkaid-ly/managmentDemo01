@@ -10,8 +10,54 @@
 <script src="js/axios-0.18.0.js"></script>
 <script src="element-ui/lib/index.js"></script>
 <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+<!--导航条-->
+<div id="nav" style="border: 1px solid blue;height: 75px">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-submenu index="2">
+            <template slot="title">我的工作台</template>
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-submenu index="2-4">
+                <template slot="title">选项4</template>
+                <el-menu-item index="2-4-1">选项1</el-menu-item>
+                <el-menu-item index="2-4-2">选项2</el-menu-item>
+                <el-menu-item index="2-4-3">选项3</el-menu-item>
+            </el-submenu>
+        </el-submenu>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+    </el-menu>
+</div>
+<!--筛选条-->
 
-<div id="app">
+<!--数据域-->
+<div id="app" style="border: 1px solid #4c00ff">
+    <!--筛选条-->
+    <label>姓名:</label><el-input v-model="inputName" placeholder="请输入姓名(支持模糊搜索)" style="width: 220px"></el-input>
+    <template>
+        <label>性别:</label>
+        <el-select v-model="valueGender" placeholder="请选择性别">
+            <el-option
+                    v-for="item in optionsGender"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+    </template>
+    <template>
+        <label>年级:</label>
+        <el-select v-model="valueGrade" placeholder="请选择年级">
+            <el-option
+                    v-for="item in optionsGrade"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+    </template>
+    <el-button icon="el-icon-search" circle @click="search()"></el-button>
+<!--    -->
     <template>
         <el-table
                 :data="students"
@@ -48,61 +94,134 @@
                     label="操作"
                     width="100">
                 <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button type="text" size="small">编辑</el-button>
+<!--                    <el-button @click="handleClick(scope.row)" type="text" size="small">删除</el-button>-->
+                    <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                    <el-button type="danger" icon="el-icon-delete" circle></el-button>
                 </template>
             </el-table-column>
         </el-table>
     </template>
 
-
-
-        <th><a href="http://localhost:8080/updateStudent">修改</a>  <a href="#">删除</a></th>
     </tr>
 </table>
 </div>
 
     <script>
-        new Vue({
+<!--        数据表格-->
+        let app =new Vue({
             el:"#app",
             data(){
                 return{
-                    students:[]
+                    students:[],
+                    inputName:'',
+                    optionsGrade: [{
+                        value: '2018',
+                        label: '2018'
+                    }, {
+                        value: '2019',
+                        label: '2019'
+                    }, {
+                        value: '2020',
+                        label: '2020'
+                    }, {
+                        value: '2021',
+                        label: '2021'
+                    }, {
+                        value: '2022',
+                        label: '2022'
+                    },{
+                        value: "",
+                        label: "不限"
+                    }],
+                    optionsGender:[{
+                        value:"男",
+                        label:"男"
+                    },{
+                        value: "女",
+                        label: "女"
+                    },{
+                        value: "",
+                        label: "不限"
+                    }],
+                    valueGrade:'',
+                    valueGender:''
                 }
             },
             mounted(){
                 //页面加载完成后
-                var _this=this;
+                let _this=this;
                 axios({
                     method:"get",
                     url:"http://localhost:8080/selectAll"
                 }).then(function (resp){
                     _this.students=resp.data;
                 })
+            },
+            methods:{
+                search:function(){
+                    let _this=this;
+                    axios({
+                        method:"get",
+                        url:`http://localhost:8080/selectByConditions?username=${_this.inputName}&grade=${_this.valueGrade}&gender=${_this.valueGender}`
+                    }).then(function (resp){
+                        _this.students=resp.data;
+                    })
+                },
+
+
             }
         })
     </script>
 <script>
-    export default {
-        data() {
+
+    //导航条
+    let nav = new Vue({
+        el:"#nav",
+        data(){
             return {
-                form: {
-                    name: '',
-                    region: '',
-                    date1: '',
-                    date2: '',
-                    delivery: false,
-                    type: [],
-                    resource: '',
-                    desc: ''
-                }
-            }
+                activeIndex: '1',
+                activeIndex2: '1'
+            };
         },
         methods: {
-            onSubmit() {
-                console.log('submit!');
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
             }
         }
+    })
+//    筛选条
+    let condition = new Vue({
+        el:"#conditions",
+        data() {
+            return {
+                options: [{
+                    value: '2018',
+                    label: '2018'
+                }, {
+                    value: '2019',
+                    label: '2019'
+                }, {
+                    value: '2020',
+                    label: '2020'
+                }, {
+                    value: '2021',
+                    label: '2021'
+                }, {
+                    value: '2022',
+                    label: '2022'
+                }],
+                value: ''
+            }
+        }
+    });
+    function search() {
+        var _this=this;
+        axios({
+            method:"get",
+            url:"http://localhost:8080/selectByConditions?grade=2020"
+        }).then(function (resp){
+            _this.students=resp.data;
+        })
     }
 </script>
 </body>
