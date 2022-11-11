@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.managementdemo01.mapper.TeacherMapper">
+    <insert id="addMission">
+        insert into mission (mid,mtitle,context,fk_tid,fk_sid,m_date,status)
+        values (#{mid},#{mtitle},#{context},#{fk_tid},#{fk_sid},NOW(),0);
+    </insert>
 
     <select id="selectAll" resultType="com.example.managementdemo01.pojo.Teacher">
         select * from teacher;

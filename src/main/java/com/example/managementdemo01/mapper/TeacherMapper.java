@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface TeacherMapper {
     List<Teacher> selectAll();
+
+    int addMission();
 }

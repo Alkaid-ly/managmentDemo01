@@ -13,8 +13,9 @@ import java.util.List;
 @Repository
 public interface StudentMapper {
     List<Student> selectAll();
+    List<Student> assessment();
 
-    Student selectById(int id);
+    Student selectById(String id);
 
     List<Student> selectByConditions(Student student);
 
@@ -23,6 +24,9 @@ public interface StudentMapper {
     int loginStudent(Student student);
 
     void addStudent(Student student);
+
+    int deleteStudent(String sid);
+
 
     @Select("select * from student where sid=#{sid} and password=#{password}")
     Student selectStudent(@Param("sid") String sid,@Param("password") String password);
