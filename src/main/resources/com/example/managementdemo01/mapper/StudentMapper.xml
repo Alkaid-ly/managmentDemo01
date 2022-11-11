@@ -6,9 +6,12 @@
 
 
     <update id="updateStudent">
-        update student set username=#{username},password=#{password},gender=#{gender},grade=#{grade},age=#{age},phone=#{phone},count=#{count}
+        update student set username=#{username},password=#{password},gender=#{gender},grade=#{grade},age=#{age},phone=#{phone}
         where sid=#{sid};
     </update>
+    <delete id="deleteStudent">
+        delete from student where sid=#{sid};
+    </delete>
 
     <select id="selectAll" resultType="com.example.managementdemo01.pojo.Student">
         select * from student;
@@ -39,6 +42,9 @@
     <select id="loginStudent" resultType="java.lang.Integer">
         select * from student
         where username=#{username} and password=#{password};
+    </select>
+    <select id="assessment" resultType="com.example.managementdemo01.pojo.Student">
+        select count,username from student order by count desc limit 5;
     </select>
 
     <insert id="addStudent">
