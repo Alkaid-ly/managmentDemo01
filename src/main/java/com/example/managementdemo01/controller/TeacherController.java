@@ -24,7 +24,7 @@ public class TeacherController {
             mission.setFk_tid("2022001");
             mission.setFk_sid(fk_sid);
         System.out.println(mission);
-        teacherMapper.addMission();
+        teacherMapper.addMission(mission);
         return 1;
     }
 }

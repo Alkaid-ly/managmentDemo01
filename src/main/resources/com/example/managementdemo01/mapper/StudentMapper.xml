@@ -6,7 +6,7 @@
 
 
     <update id="updateStudent">
-        update student set username=#{username},password=#{password},gender=#{gender},grade=#{grade},age=#{age},phone=#{phone}
+        update student set username=#{username},password=#{password},gender=#{gender},grade=#{grade},major=#{major},position=#{position},age=#{age},phone=#{phone}
         where sid=#{sid};
     </update>
     <delete id="deleteStudent">
@@ -28,6 +28,12 @@
             <if test="gender!=null and gender!=''">
                and gender=#{gender}
             </if>
+            <if test="major!=null and major!=''">
+                and major=#{major}
+            </if>
+            <if test="position!=null and position!=''">
+                and position=#{position}
+            </if>
             <if test="grade!=null and grade!=''">
                 and grade=#{grade}
             </if>
@@ -48,7 +54,7 @@
     </select>
 
     <insert id="addStudent">
-        insert into student (sid, username, password, gender, grade, age, phone, count)
-        values (#{sid},#{username},#{password},#{gender},#{grade},#{age},#{phone},#{count});
+        insert into student (sid, username, password, gender, grade,major,position,age, phone, count)
+        values (#{sid},#{username},#{password},#{gender},#{grade},#{major},#{position},#{age},#{phone},#{count});
     </insert>
 </mapper>

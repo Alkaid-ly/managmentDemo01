@@ -9,7 +9,25 @@ public class Student {
     private String age;
     private String phone;
     private String grade;
+    private String major;
 
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    private String position;
     public String getAge() {
         return age;
     }
@@ -79,13 +97,15 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + sid +
+                "sid='" + sid + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", gender='" + gender + '\'' +
-                ", age=" + age +
+                ", age='" + age + '\'' +
                 ", phone='" + phone + '\'' +
-                ", grade=" + grade +
+                ", grade='" + grade + '\'' +
+                ", major='" + major + '\'' +
+                ", position='" + position + '\'' +
                 ", count=" + count +
                 '}';
     }

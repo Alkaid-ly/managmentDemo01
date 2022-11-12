@@ -34,7 +34,7 @@ public class StudentController {
         return student;
     }
     @GetMapping("/selectByConditions")
-    List<Student> selectByConditions(@Param("username") String username, @Param("gender") String gender, @Param("grade")String grade, @Param("age")String age, @Param("phone")String phone){
+    List<Student> selectByConditions(@Param("username") String username, @Param("gender") String gender, @Param("grade")String grade, @Param("major")String major, @Param("position")String position, @Param("age")String age, @Param("phone")String phone){
         Student student = new Student();
         if(username!=null){
             username="%"+username+"%";
@@ -48,6 +48,12 @@ public class StudentController {
         }
         if(age!=null) {
             student.setAge(age);
+        }
+        if(major!=null) {
+            student.setMajor(major);
+        }
+        if(position!=null) {
+            student.setPosition(position);
         }
         if(phone!=null){
             phone="%"+phone+"%";
@@ -85,7 +91,7 @@ public class StudentController {
         return result;
     }
     @RequestMapping(value = "/addStudent",method = RequestMethod.POST)
-    public int addStudent(String sid,String username,String password,String gender,String grade,String age,String phone){
+    public int addStudent(String sid,String username,String password,String gender,String grade,String major,String position,String age,String phone){
         Student student=new Student();
         if(sid!=null){
             student.setSid(sid);
@@ -101,6 +107,12 @@ public class StudentController {
         }
         if(grade!=null) {
             student.setGrade(grade);
+        }
+        if(major!=null) {
+            student.setMajor(major);
+        }
+        if(position!=null) {
+            student.setPosition(position);
         }
         if(age!=null) {
             student.setAge(age);
@@ -115,7 +127,7 @@ public class StudentController {
         return 1;
     }
     @RequestMapping(value = "/updateStudent",method = RequestMethod.POST)
-    public int updateStudent(String sid,String username,String password,String gender,String grade,String age,String phone){
+    public int updateStudent(String sid,String username,String password,String gender,String grade,String major,String position,String age,String phone){
         Student student=new Student();
         if(sid!=null){
             student.setSid(sid);
@@ -131,6 +143,12 @@ public class StudentController {
         }
         if(grade!=null) {
             student.setGrade(grade);
+        }
+        if(major!=null) {
+            student.setMajor(major);
+        }
+        if(position!=null) {
+            student.setPosition(position);
         }
         if(age!=null) {
             student.setAge(age);

@@ -40,6 +40,16 @@
                 <el-option label="2022" value="2022"></el-option>
             </el-select>
         </el-form-item>
+        <el-form-item label="专业">
+            <el-input v-model="form.major"></el-input>
+        </el-form-item>
+        <el-form-item label="职位">
+        <el-select v-model="form.position" placeholder="请选择活动职位">
+            <el-option label="班长" value="班长"></el-option>
+            <el-option label="团支部书记" value="团支部书记"></el-option>
+            <el-option label="学习委员" value="学习委员"></el-option>
+        </el-select>
+        </el-form-item>
         <el-form-item label="手机号">
             <el-input v-model="form.phone"></el-input>
         </el-form-item>
@@ -61,6 +71,8 @@
                     password:'',
                     gender:'',
                     grade:'',
+                    major:'',
+                    position:'',
                     age:'',
                     phone:''
                 },
@@ -76,6 +88,8 @@
                 params.append('password',this.form.password);
                 params.append('gender',this.form.gender);
                 params.append('grade',this.form.grade);
+                params.append('major',this.form.major);
+                params.append('position',this.form.position);
                 params.append('age',this.form.age);
                 params.append('phone',this.form.phone);
                 let _this=this;
