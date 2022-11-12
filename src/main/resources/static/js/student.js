@@ -35,6 +35,20 @@ let app =new Vue({
                 value: "",
                 label: "不限"
             }],
+            optionPosition:[{
+                value:"班长",
+                label:"班长"
+            },{
+                value:"团支部书记",
+                label:"团支部书记"
+            },{
+                value:"学习委员",
+                label:"学习委员"
+            },{
+                value:"",
+                label:"不限"
+            }],
+            valuePosition:'',
             valueGrade:'',
             valueGender:''
         }
@@ -54,7 +68,7 @@ let app =new Vue({
             let _this=this;
             axios({
                 method:"get",
-                url:`http://localhost:8080/selectByConditions?username=${_this.inputName}&grade=${_this.valueGrade}&gender=${_this.valueGender}`
+                url:`http://localhost:8080/selectByConditions?username=${_this.inputName}&grade=${_this.valueGrade}&gender=${_this.valueGender}&position=${_this.valuePosition}`
             }).then(function (resp){
                 _this.students=resp.data;
             })
@@ -92,6 +106,8 @@ let app =new Vue({
             params.append('password',this.updateStudent.password);
             params.append('gender',this.updateStudent.gender);
             params.append('grade',this.updateStudent.grade);
+            params.append('major',this.updateStudent.major);
+            params.append('position',this.updateStudent.position);
             params.append('age',this.updateStudent.age);
             params.append('phone',this.updateStudent.phone);
             let _this=this;

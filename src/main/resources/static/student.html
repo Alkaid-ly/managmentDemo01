@@ -15,19 +15,29 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1">处理中心</el-menu-item>
 
-        </el-submenu>
-        <el-menu-item index="3">干部考核</el-menu-item>
-        <el-menu-item index="4" disabled>消息中心</el-menu-item>
 
-        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        <el-menu-item index="3">干部考核</el-menu-item>
+        <el-menu-item index="4">任务中心</el-menu-item>
+        <el-menu-item index="5" disabled>消息中心</el-menu-item>
+
+        <el-menu-item index="6"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
     </el-menu>
 </div>
-<!--筛选条-->
 
 <!--数据域-->
 <div id="app" style="border: 1px solid #4c00ff">
     <!--筛选条-->
     <label>姓名:</label><el-input v-model="inputName" placeholder="请输入姓名(支持模糊搜索)" style="width: 220px"></el-input>
+    <template>
+        <label>职位:</label>
+        <el-select v-model="valuePosition" placeholder="请选择职位">
+            <el-option
+                    v-for="item in optionPosition"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+    </template>
     <template>
         <label>性别:</label>
         <el-select v-model="valueGender" placeholder="请选择性别">
@@ -50,7 +60,7 @@
     </template>
     <template>
     <el-button icon="el-icon-search" circle @click="search()"></el-button>
-    <el-button @click="add()">添加</el-button>
+    <el-button type="primary" @click="add()">添加</el-button>
     </template>
 <!--    -->
     <template>
@@ -77,6 +87,14 @@
                     label="年级">
             </el-table-column>
             <el-table-column
+                    prop="major"
+                    label="专业">
+            </el-table-column>
+            <el-table-column
+                    prop="position"
+                    label="职位">
+            </el-table-column>
+            <el-table-column
                     prop="phone"
                     label="手机号">
             </el-table-column>
@@ -98,6 +116,9 @@
             </el-table-column>
         </el-table>
     </template>
+
+
+
 <!--    修改对话框   -->
     <el-dialog
             title="修改学生信息"
@@ -130,6 +151,16 @@
                     <el-option label="2020" value="2020"></el-option>
                     <el-option label="2021" value="2021"></el-option>
                     <el-option label="2022" value="2022"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="专业">
+                <el-input v-model="updateStudent.major"></el-input>
+            </el-form-item>
+            <el-form-item label="职位">
+                <el-select v-model="updateStudent.position" placeholder="请选择活动职位">
+                    <el-option label="班长" value="班长"></el-option>
+                    <el-option label="团支部书记" value="团支部书记"></el-option>
+                    <el-option label="学习委员" value="学习委员"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="手机号">
