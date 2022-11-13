@@ -11,4 +11,7 @@
     <select id="selectAll" resultType="com.example.managementdemo01.pojo.Teacher">
         select * from teacher;
     </select>
+    <select id="selectAllMission" resultType="com.example.managementdemo01.pojo.Mission">
+        select * from mission;
+    </select>
 </mapper>

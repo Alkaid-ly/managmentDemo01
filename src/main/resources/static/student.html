@@ -124,8 +124,8 @@
             title="修改学生信息"
             :visible.sync="updateFlag"
             width="75%"
-            :before-close="handleClose">
-        <el-form ref="form" :model="form" label-width="80px">
+            >
+        <el-form ref="form"  label-width="80px">
             <el-form-item label="学号">
                 <el-input v-model="updateStudent.sid" :disabled="true"></el-input>
             </el-form-item>

@@ -13,4 +13,5 @@ public interface TeacherMapper {
     List<Teacher> selectAll();
 
     int addMission(Mission mission);
+    List<Mission> selectAllMission();
 }

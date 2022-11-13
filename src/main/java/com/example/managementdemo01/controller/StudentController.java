@@ -44,6 +44,8 @@ public class StudentController {
         student.setGender(gender);
         }
         if(grade!=null) {
+            //去除空格
+            grade=grade.trim();
             student.setGrade(grade);
         }
         if(age!=null) {
