@@ -3,8 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>教师任务管理中心</title>
+<!--    <link type="text/css" rel="stylesheet" href="./css/teacherMisiion.css">-->
 </head>
+<script src="js/vue.js"></script>
+<script src="element-ui/lib/index.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
 <body>
+<div id="app">
+    <el-container>
+        <el-header>
+            <el-menu default-active=4 class="el-menu-demo" mode="horizontal">
+                <el-menu-item index="1">处理中心</el-menu-item>
+                <el-menu-item index="3">干部考核</el-menu-item>
+                <el-menu-item index="4">任务中心</el-menu-item>
+            </el-menu>
+        </el-header>
+        <el-container>
+            <el-aside width="210px">
+                <el-row class="tac">
+                    <el-col :span="12">
+                        <el-menu
+                                default-active="2"
+                                class="el-menu-vertical-demo">
+                            <el-submenu index="1">
+                                <template slot="title">
+                                    <span>任务中心</span>
+                                </template>
+                            <el-menu-item index="2">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title">发布新任务</span>
+                            </el-menu-item>
+                            <el-menu-item index="3">
+                                <i class="el-icon-document"></i>
+                                <span slot="title">已发布的任务</span>
+                            </el-menu-item>
+                            </el-submenu>
+                        </el-menu>
+                    </el-col>
+                </el-row>
+            </el-aside>
+            <el-main>
 
+                <el-form ref="form"  label-width="80px">
+                    <el-form-item label="任务标题">
+                        <el-input v-model="form.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="发送给">
+                        <el-select v-model="form.grade" clearable placeholder="请选接收人所在年级">
+                            <el-option label="2018" value=2018></el-option>
+                            <el-option label="2019" value=2019></el-option>
+                            <el-option label="2020" value=2020></el-option>
+                            <el-option label="2021" value=2021></el-option>
+                            <el-option label="2022" value=2022></el-option>
+                        </el-select>
+
+                        <el-select v-model="form.major" clearable placeholder="请选接收人所在专业">
+                            <el-option label="计算机科学与技术" value="计算机科学与技术"></el-option>
+                            <el-option label="通信工程" value="通信工程"></el-option>
+                            <el-option label="网络工程" value="网络工程"></el-option>
+                            <el-option label="电子信息工程" value="电子信息工程"></el-option>
+                        </el-select>
+
+                        <el-select v-model="form.position" @change="searchWho" clearable placeholder="请选接收人的职位">
+                            <el-option label="班长" value="班长"></el-option>
+                            <el-option label="团支部书记" value="团支部书记"></el-option>
+                            <el-option label="学习委员" value="学习委员"></el-option>
+                        </el-select>
+                        <el-input v-model="form.studentName" :disabled="true" style="width: 250px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="任务详情">
+                        <el-input type="textarea" v-model="form.context"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                        <el-button>取消</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
 </body>
+<script src="./js/addMission.js"></script>
+
 </html>
