@@ -2,6 +2,7 @@ package com.example.managementdemo01.controller;
 
 
 import com.example.managementdemo01.mapper.StudentMapper;
+import com.example.managementdemo01.pojo.Mission;
 import com.example.managementdemo01.pojo.Student;
 import org.apache.ibatis.annotations.Param;
 import org.jetbrains.annotations.NotNull;
@@ -162,6 +163,23 @@ public class StudentController {
         }
         System.out.println(student);
         studentMapper.updateStudent(student);
+        return 1;
+    }
+    @GetMapping("/myMission")
+    public List<Mission> myMission(String sid){
+        List<Mission> missions = studentMapper.myMission(sid);
+        return missions;
+    }
+    @GetMapping("/showMission")
+    Mission showMission(String mid){
+        Mission mission=new Mission();
+        mission=studentMapper.showMission(mid);
+        return mission;
+    }
+
+    @GetMapping("/completeMission")
+    int completeMission(String mid){
+        studentMapper.completeMission(mid);
         return 1;
     }
 

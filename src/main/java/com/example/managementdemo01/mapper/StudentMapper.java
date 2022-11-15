@@ -1,6 +1,7 @@
 package com.example.managementdemo01.mapper;
 
 
+import com.example.managementdemo01.pojo.Mission;
 import com.example.managementdemo01.pojo.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,6 +27,11 @@ public interface StudentMapper {
     void addStudent(Student student);
 
     int deleteStudent(String sid);
+    List<Mission> myMission(String sid);
+    @Select("select * from mission where mid=#{mid}")
+    Mission showMission(String mid);
+
+    int completeMission( String mid);
 
 
     @Select("select * from student where sid=#{sid} and password=#{password}")
