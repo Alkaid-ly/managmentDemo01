@@ -12,6 +12,6 @@
         select * from teacher;
     </select>
     <select id="selectAllMission" resultType="com.example.managementdemo01.pojo.Mission">
-        select * from mission;
+        select * from student,mission where student.sid=mission.fk_sid
     </select>
 </mapper>

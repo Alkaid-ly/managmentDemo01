@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<script src="element-ui/lib/index.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+<body>
+<div id="app">
+<el-container>
+  <el-header>
+    <el-menu :default-active=3 class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-menu-item index="3">干部考核</el-menu-item>
+      <el-menu-item index="4">任务中心</el-menu-item>
+    </el-menu>
+  </el-header>
+  <el-container>
+    <el-aside width="210px">
+      <el-row class="tac">
+        <el-col :span="12">
+          <el-menu
+                  default-active="3"
+                  class="el-menu-vertical-demo"
+                  @open="handleOpen"
+          >
+            <el-submenu index="1">
+              <template slot="title">
+                <span>任务中心</span>
+              </template>
+              <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">发布新任务</span>
+              </el-menu-item>
+              <el-menu-item index="3">
+                <i class="el-icon-document"></i>
+                <span slot="title">已发布的任务</span>
+              </el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </el-aside>
+    <el-main>
+
+      <el-table
+              :data="missions"
+              style="width: 100%"
+              :default-sort = "{prop: 'm_date', order: 'descending'}"
+      >
+        <el-table-column
+                prop="m_date"
+                label="日期"
+                sortable
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="mtitle"
+                label="标题"
+                sortable
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="username"
+                label="负责人姓名"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="position"
+                label="负责人职位"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="phone"
+                label="负责人联系方式"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="status"
+                label="任务状态"
+                width="180"
+        >
+        </el-table-column>
+      </el-table>
+
+    </el-main>
+  </el-container>
+</el-container>
+</div>
+</body>
+<script src="./js/mission.js"></script>
+</html>

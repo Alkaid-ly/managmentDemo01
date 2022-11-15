@@ -9,6 +9,9 @@
         update student set username=#{username},password=#{password},gender=#{gender},grade=#{grade},major=#{major},position=#{position},age=#{age},phone=#{phone}
         where sid=#{sid};
     </update>
+    <update id="completeMission">
+        update mission set status=1 where mid=#{mid};
+    </update>
     <delete id="deleteStudent">
         delete from student where sid=#{sid};
     </delete>
@@ -51,6 +54,9 @@
     </select>
     <select id="assessment" resultType="com.example.managementdemo01.pojo.Student">
         select count,username from student order by count desc limit 5;
+    </select>
+    <select id="myMission" resultType="com.example.managementdemo01.pojo.Mission">
+        select * from mission,student where fk_sid=sid and sid=#{sid};
     </select>
 
     <insert id="addStudent">

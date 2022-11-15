@@ -8,6 +8,10 @@ public class Mission {
   private String fk_sid;
   private String m_date;
   private String status;
+  private String position;
+  private String phone;
+
+
 
     @Override
     public String toString() {
@@ -19,7 +23,36 @@ public class Mission {
                 ", fk_sid='" + fk_sid + '\'' +
                 ", m_date='" + m_date + '\'' +
                 ", status='" + status + '\'' +
+                ", position='" + position + '\'' +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
                 '}';
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMid() {

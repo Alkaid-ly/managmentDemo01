@@ -26,6 +26,7 @@ public class TeacherController {
         teacherMapper.addMission(mission);
         return 1;
     }
+    @CrossOrigin
     @GetMapping("/selectAllMission")
     List<Mission> selectAllMission(){
         List<Mission> missions = teacherMapper.selectAllMission();
