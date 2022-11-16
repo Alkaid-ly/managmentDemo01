@@ -28,6 +28,9 @@ public interface StudentMapper {
 
     int deleteStudent(String sid);
     List<Mission> myMission(String sid);
+
+    List<Mission> myMissionComp(String sid);
+    List<Mission> myMissionYet(String sid);
     @Select("select * from mission where mid=#{mid}")
     Mission showMission(String mid);
 

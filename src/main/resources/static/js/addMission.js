@@ -31,6 +31,18 @@ let app = new Vue({
             console.log(this.student[0]);
             console.log(this);
         },
+        handleSelect(key, keyPath) {
+            console.log(key);
+            if(key==1){
+                location.assign("http://localhost:8080/student.html")
+            }
+            if(key==3){
+                location.assign("http://localhost:8080/chart.html")
+            }
+            if(key==4){
+                location.assign("http://localhost:8080/mission.html")
+            }
+        },
         onSubmit() {
             let params = new URLSearchParams();
             let url='http://localhost:8080/addMission';
@@ -52,6 +64,12 @@ let app = new Vue({
                     alert("服务器繁忙")
                 }
             })
+        },
+        addMission(){
+            location.assign("http://localhost:8080/teacherMission.html","_self");
+        },
+        mission(){
+            location.assign("http://localhost:8080/mission.html","_self");
         }
     }
 })

@@ -58,6 +58,12 @@
     <select id="myMission" resultType="com.example.managementdemo01.pojo.Mission">
         select * from mission,student where fk_sid=sid and sid=#{sid};
     </select>
+    <select id="myMissionComp" resultType="com.example.managementdemo01.pojo.Mission">
+        select * from mission,student where fk_sid=sid and sid=#{sid} and mission.status=1;
+    </select>
+    <select id="myMissionYet" resultType="com.example.managementdemo01.pojo.Mission">
+        select * from mission,student where fk_sid=sid and sid=#{sid} and mission.status=0;
+    </select>
 
     <insert id="addStudent">
         insert into student (sid, username, password, gender, grade,major,position,age, phone, count)

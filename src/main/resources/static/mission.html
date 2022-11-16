@@ -31,12 +31,12 @@
               <template slot="title">
                 <span>任务中心</span>
               </template>
-              <el-menu-item index="2">
+              <el-menu-item index="2" @click="addMission">
                 <i class="el-icon-menu"></i>
                 <span slot="title">发布新任务</span>
               </el-menu-item>
               <el-menu-item index="3">
-                <i class="el-icon-document"></i>
+                <i class="el-icon-document" @click="mission"></i>
                 <span slot="title">已发布的任务</span>
               </el-menu-item>
             </el-submenu>

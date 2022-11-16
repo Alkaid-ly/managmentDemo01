@@ -5,11 +5,15 @@ import com.example.managementdemo01.pojo.Mission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @CrossOrigin
 public class TeacherController {
+    @Autowired
+    private HttpServletResponse response;
     @Autowired
     private TeacherMapper teacherMapper;
     @RequestMapping(value = "/addMission",method = RequestMethod.POST)
@@ -25,6 +29,10 @@ public class TeacherController {
         System.out.println(mission);
         teacherMapper.addMission(mission);
         return 1;
+    }
+    @GetMapping("/loginTeacher")
+    void loginTeacher() throws IOException {
+        response.sendRedirect("student.html");
     }
     @CrossOrigin
     @GetMapping("/selectAllMission")
