@@ -185,8 +185,9 @@ public class StudentController {
     }
 
     @GetMapping("/completeMission")
-    int completeMission(String mid){
+    int completeMission(String mid,String sid){
         studentMapper.completeMission(mid);
+        studentMapper.addCount(sid);
         return 1;
     }
     @GetMapping("/Hello")

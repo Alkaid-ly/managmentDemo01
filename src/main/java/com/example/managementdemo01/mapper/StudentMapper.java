@@ -35,7 +35,7 @@ public interface StudentMapper {
     Mission showMission(String mid);
 
     int completeMission( String mid);
-
+    void addCount(String sid);
 
     @Select("select * from student where sid=#{sid} and password=#{password}")
     Student selectStudent(@Param("sid") String sid,@Param("password") String password);

@@ -69,4 +69,7 @@
         insert into student (sid, username, password, gender, grade,major,position,age, phone, count)
         values (#{sid},#{username},#{password},#{gender},#{grade},#{major},#{position},#{age},#{phone},#{count});
     </insert>
+    <update id="addCount">
+        update student set count=count+1 where sid=#{sid};
+    </update>
 </mapper>

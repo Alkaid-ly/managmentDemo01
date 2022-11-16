@@ -83,6 +83,11 @@
                 label="任务状态"
                 width="180"
         >
+          <template slot-scope="scope">
+          <el-tag
+                  :type="scope.row.status === '1' ? 'success' : 'warning'"
+                  disable-transitions>{{scope.row.status==1?'已完成':'未完成'}}</el-tag>
+        </template>
         </el-table-column>
       </el-table>
 
