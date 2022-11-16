@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>学生任务页</title>
+    <title>学生任务-已完成</title>
 </head>
 <script src="js/vue.js"></script>
 <script src="element-ui/lib/index.js"></script>
@@ -11,7 +11,12 @@
 <body>
 <div id="app">
   <el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <el-menu default-active=1 class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-menu-item index="2">修改个人资料</el-menu-item>
+      </el-menu>
+    </el-header>
   </el-container>
     <el-container>
       <el-aside width="200px">
@@ -27,11 +32,11 @@
                   <i class="el-icon-location"></i>
                   <span>任务</span>
                 </template>
-                <el-menu-item index="1">
+                <el-menu-item index="1" @click="Yet">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">待完成</span>
+                  <span slot="title" >待完成</span>
                 </el-menu-item>
-              <el-menu-item index="2">
+              <el-menu-item index="2" @click="Comp">
                 <i class="el-icon-menu"></i>
                 <span slot="title">已完成</span>
               </el-menu-item>
@@ -74,7 +79,6 @@
                     width="100">
               <template slot-scope="scope">
                 <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-                <el-button type="text" size="small">编辑</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -98,13 +102,12 @@
               <el-input type="textarea" v-model="form.context"></el-input>
             </el-form-item>
           </el-form>
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="complete">设为完成</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确定</el-button>
         </el-dialog>
       </el-main>
     </el-container>
   </el-container>
 </div>
 </body>
-<script src="./js/stuMission.js"></script>
+<script src="js/stuMissionComp.js"></script>
 </html>

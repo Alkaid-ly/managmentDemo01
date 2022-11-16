@@ -67,15 +67,8 @@ public class StudentController {
         return students;
     }
     @GetMapping("/loginStudent")
-    public void loginById(HttpServletResponse response,@RequestParam("sid") String sid, @RequestParam("password") String password) throws IOException {
-        Student student = studentMapper.selectStudent(sid, password);
-        System.out.println(student);
-        if(student!=null){
-
-            response.sendRedirect("student.html");
-            return;
-        }
-        response.sendRedirect("teacherLogin.html");
+    public void loginById(HttpServletResponse response) throws IOException {
+            response.sendRedirect("stuMissionYet.html");
     }
     @GetMapping("/chart")
     public void toChart(@NotNull HttpServletResponse response) throws IOException {
@@ -170,6 +163,20 @@ public class StudentController {
         List<Mission> missions = studentMapper.myMission(sid);
         return missions;
     }
+    //查询已完成任务
+    @GetMapping("/myMissionComp")
+    public List<Mission> myMissionComp(String sid){
+        List<Mission> missions = studentMapper.myMissionComp(sid);
+        return missions;
+    }
+    //查询未完成任务
+    @GetMapping("/myMissionYet")
+    public List<Mission> myMissionYet(String sid){
+        List<Mission> missions = studentMapper.myMissionYet(sid);
+        return missions;
+    }
+
+
     @GetMapping("/showMission")
     Mission showMission(String mid){
         Mission mission=new Mission();
@@ -178,9 +185,14 @@ public class StudentController {
     }
 
     @GetMapping("/completeMission")
-    int completeMission(String mid){
+    int completeMission(String mid,String sid){
         studentMapper.completeMission(mid);
+        studentMapper.addCount(sid);
         return 1;
+    }
+    @GetMapping("/Hello")
+    void Hello(){
+
     }
 
 

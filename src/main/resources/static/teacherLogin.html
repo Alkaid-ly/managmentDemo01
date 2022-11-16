@@ -34,7 +34,7 @@
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+    <form action="http://localhost:8080/loginTeacher">
             <h1>教师登录</h1>
             <div class="txtb">
                 <input type="text">
@@ -45,8 +45,10 @@
                 <span data-placeholder="Password"></span>
             </div>
             <a href="#">忘记密码？</a>
-            <button id="btn" onclick=" window.open("http://localhost:8080/student.html","_self")">登录</button>
-        </form>
+            <button id="btn">登录</button>
+    </form>
+
+
     </div>
 
     <div class="overlay-container">
@@ -69,10 +71,9 @@
 <script src="js/axios-0.18.0.js"></script>
 <script>
     let btn = document.querySelector("#btn");
-    btn.addEventListener('click',function (){window.open("http://localhost:8080/student.html","_blank");});
-
-
-
+    btn.onclick=function (){
+        location.assign("http://localhost:8080/student.html","_self");
+    }
     $("#signUp").click(function(){
         $("#login-box").addClass('right-panel-active')
     })

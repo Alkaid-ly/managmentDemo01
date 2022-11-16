@@ -11,7 +11,7 @@
 <script src="element-ui/lib/index.js"></script>
 <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
 <!--导航条-->
-<div id="nav" style="border: 1px solid blue;height: 75px">
+<div id="nav" >
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1">处理中心</el-menu-item>
         <el-menu-item index="3">干部考核</el-menu-item>
@@ -20,7 +20,7 @@
 </div>
 
 <!--数据域-->
-<div id="app" style="border: 1px solid #4c00ff">
+<div id="app">
     <!--筛选条-->
     <label>姓名:</label><el-input v-model="inputName" placeholder="请输入姓名(支持模糊搜索)" style="width: 220px"></el-input>
     <template>

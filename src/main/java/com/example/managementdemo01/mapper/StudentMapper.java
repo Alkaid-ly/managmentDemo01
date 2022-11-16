@@ -28,11 +28,14 @@ public interface StudentMapper {
 
     int deleteStudent(String sid);
     List<Mission> myMission(String sid);
+
+    List<Mission> myMissionComp(String sid);
+    List<Mission> myMissionYet(String sid);
     @Select("select * from mission where mid=#{mid}")
     Mission showMission(String mid);
 
     int completeMission( String mid);
-
+    void addCount(String sid);
 
     @Select("select * from student where sid=#{sid} and password=#{password}")
     Student selectStudent(@Param("sid") String sid,@Param("password") String password);
