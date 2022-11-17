@@ -25,6 +25,7 @@ public interface StudentMapper {
     int loginStudent(Student student);
 
     void addStudent(Student student);
+    Student selectOne(String sid);
 
     int deleteStudent(String sid);
     List<Mission> myMission(String sid);
