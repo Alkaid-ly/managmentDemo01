@@ -190,6 +190,12 @@ public class StudentController {
         studentMapper.addCount(sid);
         return 1;
     }
+    @GetMapping("selectOne")
+    Student selectOne(String sid){
+        Student student=new Student();
+        student=studentMapper.selectOne(sid);
+        return student;
+    }
     @GetMapping("/Hello")
     void Hello(){
 
